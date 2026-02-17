@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pipeline parameters",
+  "type": "object",
+  "properties": {
+    "input_tsv": {
+      "type": "string",
+      "description": "Path to TSV samplesheet",
+      "pattern": ".+\\.tsv$"
+    },
+    "outdir": {
+      "type": "string",
+      "description": "Output directory"
+    },
+    "filter": {
+      "type": "object",
+      "description": "Read filtering options",
+      "properties": {
+        "min_len": {
+          "type": "integer",
+          "description": "Minimum read length",
+          "minimum": 50
+        },
+        "max_len": {
+          "type": "integer",
+          "description": "Maximum read length",
+          "minimum": 50
+        },
+        "max_error": {
+          "type": "number",
+          "description": "Maximum error rate",
+          "minimum": 0.0,
+          "maximum": 0.15
+        }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "description": "amplipore classification options",
+      "properties": {
+        "cluster_pident": {
+          "type": "number",
+          "description": "Percent identity for read clustering",
+          "minimum": 0.5,
+          "maximum": 1.0
+        },
+        "sintax_threshold": {
+          "type": "number",
+          "description": "Sintax threshold",
+          "minimum": 0.5,
+          "maximum": 1.0
+        },
+        "kmer_size": {
+          "type": "integer",
+          "description": "Kmer size for minimizer generation",
+          "minimum": 11,
+          "maximum": 31
+        },
+        "window_size": {
+          "type": "integer",
+          "description": "Window size for minimizer generation",
+          "minimum": 5,
+          "maximum": 31
+        }
+      }
+    }
+  },
+  "required": ["input_tsv", "outdir"]
+}
