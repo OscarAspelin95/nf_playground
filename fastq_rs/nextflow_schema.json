@@ -1,0 +1,39 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"title": "Pipeline parameters",
+	"type": "object",
+	"properties": {
+		"input_tsv": {
+			"type": "string",
+			"description": "Path to TSV samplesheet",
+			"pattern": ".+\\.tsv$"
+		},
+		"outdir": {
+			"type": "string",
+			"description": "Output directory"
+		},
+		"filter": {
+			"type": "object",
+			"description": "Read filtering options",
+			"properties": {
+				"min_len": {
+					"type": "integer",
+					"description": "Minimum read length",
+					"minimum": 50
+				},
+				"max_len": {
+					"type": "integer",
+					"description": "Maximum read length",
+					"minimum": 50
+				},
+				"max_error": {
+					"type": "number",
+					"description": "Maximum error rate",
+					"minimum": 0.0,
+					"maximum": 0.15
+				}
+			}
+		}
+	},
+	"required": ["input_tsv", "outdir"]
+}
